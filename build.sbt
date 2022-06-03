@@ -11,7 +11,8 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-hive" % "3.1.2" % Compile,
   "org.scalatest" %% "scalatest" % "3.0.8" % Test,
   "org.scalactic" %% "scalactic" % "3.0.8" % Test,
-  "org.locationtech.geotrellis" %% "geotrellis-s3-spark" % "3.6.2"
+  "org.locationtech.geotrellis" %% "geotrellis-s3-spark" % "3.6.2",
+  "org.apache.logging.log4j"    % "log4j-1.2-api"                 % "2.17.1"
 )
 resolvers ++= Seq(
   "LT-releases" at "https://repo.locationtech.org/content/groups/releases",
@@ -32,7 +33,6 @@ scalacOptions ++= Seq(
   "-language:existentials",
   "-language:experimental.macros",
   "-Ypartial-unification", // Required by Cats
-  "-Ywarn-unused-import",
   "-Yrangepos"
 )
 
@@ -42,7 +42,6 @@ import java.net._
 import geotrellis.layer._
 import geotrellis.vector._
 import geotrellis.raster._
-import geotrellis.raster.gdal._
 import geotrellis.spark._
 import com.azavea._
 """.stripMargin
@@ -92,7 +91,7 @@ sparkS3JarFolder := "s3://geotrellis-test/jobs/jars"
 sparkS3LogUri := Some("s3://geotrellis-test/jobs/logs")
 sparkMasterType := "m4.xlarge"
 sparkCoreType := "m4.xlarge"
-sparkInstanceCount := 5
+sparkInstanceCount := 3
 sparkMasterPrice := Some(0.5)
 sparkCorePrice := Some(0.5)
 sparkEmrServiceRole := "EMR_DefaultRole"
