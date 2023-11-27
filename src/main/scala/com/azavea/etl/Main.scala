@@ -153,6 +153,7 @@ object Main extends CommandApp(
         logWarn("Shutting down SparkContext")
 
         spark.stop
+        sys.exit(0)
       }
     }
   }
