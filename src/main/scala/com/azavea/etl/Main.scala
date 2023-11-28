@@ -95,7 +95,6 @@ object Main extends CommandApp(
 
         val spark = SparkSession.builder
           .config(conf)
-          .enableHiveSupport
           .getOrCreate
 
         implicit val sc = spark.sparkContext
@@ -154,6 +153,7 @@ object Main extends CommandApp(
         logWarn("Shutting down SparkContext")
 
         spark.stop
+        sys.exit(0)
       }
     }
   }
